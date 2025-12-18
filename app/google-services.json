@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "338522063134",
+    "firebase_url": "https://prolens-a2c75-default-rtdb.firebaseio.com",
+    "project_id": "prolens-a2c75",
+    "storage_bucket": "prolens-a2c75.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338522063134:android:2047346f7b42d8cb8e490f",
+        "android_client_info": {
+          "package_name": "com.example.prolens"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNxDZkCbIBLL-WHNApONtrZCk7_AzokN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
