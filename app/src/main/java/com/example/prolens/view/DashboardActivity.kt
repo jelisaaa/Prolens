@@ -30,7 +30,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.prolens.R
 import com.example.prolens.ui.theme.Blue
+import com.example.prolens.ui.theme.Grey
 import com.example.prolens.ui.theme.ProLensTheme
+import com.example.prolens.ui.theme.Purple80
+import com.example.prolens.ui.theme.PurpleGrey80
 import com.example.prolens.ui.theme.WhitePoint
 
 class DashboardActivity : ComponentActivity() {
@@ -82,12 +85,12 @@ fun DashboardScreen(){
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Blue,
+                    containerColor = Grey,
                     actionIconContentColor = WhitePoint,
                     titleContentColor = WhitePoint,
                     navigationIconContentColor = WhitePoint
                 ),
-                title = {Text("Dashboard")},
+                title = {Text("ProLens")},
                 navigationIcon = {
                     IconButton(onClick = {
                         activity.finish()
@@ -108,8 +111,7 @@ fun DashboardScreen(){
                             contentDescription = null
                         )
                         Icon(
-                            painter = painterResource(R.drawable.baseline_notifications_24
-                            ),
+                            painter = painterResource(R.drawable.baseline_notifications_24),
                             contentDescription = null
                         )
                     }

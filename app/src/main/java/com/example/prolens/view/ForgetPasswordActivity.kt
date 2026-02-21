@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import com.example.prolens.repository.UserRepoImpl
 import com.example.prolens.ui.theme.Blue
 import com.example.prolens.ui.theme.PurpleGrey80
+import com.example.prolens.ui.theme.SoftGrey
+import com.example.prolens.ui.theme.SoftWhite
 import com.example.prolens.viewmodel.UserViewModel
 
 class ForgetPasswordActivity : ComponentActivity() {
@@ -49,9 +52,11 @@ fun ForgetBody(){
     val userViewModel = remember { UserViewModel(UserRepoImpl()) }
     val context = LocalContext.current
     var email by remember { mutableStateOf("") }
-    Scaffold { padding ->
+    Scaffold (
+        contentColor = SoftGrey
+    ){ padding ->
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding)
+            modifier = Modifier.fillMaxSize().padding(padding).background(SoftGrey)
         ) {
             item {
 
@@ -67,8 +72,8 @@ fun ForgetBody(){
                         Text("abc@gmail.com")
                     },
                     colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = PurpleGrey80,
-                        focusedContainerColor = PurpleGrey80,
+                        unfocusedContainerColor = SoftWhite,
+                        focusedContainerColor = SoftWhite,
                         focusedIndicatorColor = Blue,
                         unfocusedIndicatorColor = Color.Transparent
                     ),
