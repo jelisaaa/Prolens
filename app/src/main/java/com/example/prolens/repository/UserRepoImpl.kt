@@ -35,12 +35,15 @@ class UserRepoImpl : UserRepo {
         password: String,
         callback: (Boolean, String, String) -> Unit
     ) {
-        auth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener {
-                if ( it.isSuccessful){
-                    callback(true,"Registration success","${auth.currentUser?.uid}")
-                }else{
-                    callback(true,"${it.exception?.message}","")
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task -> // Use 'task' for clarity
+                if (task.isSuccessful) {
+                    // Success: true, message, and the UID
+                    callback(true, "Registration success", auth.currentUser?.uid ?: "")
+                } else {
+                    // FAILURE: This MUST be false
+                    val errorMessage = task.exception?.message ?: "An unknown error occurred"
+                    callback(false, errorMessage, "")
                 }
             }
     }
