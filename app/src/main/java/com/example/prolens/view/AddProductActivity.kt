@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -118,12 +119,12 @@ fun AddProductBody(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 // --- UPLOAD AREA ---
-                // Clickable is now on the card surface to ensure maximum touch area
                 OutlinedCard(
                     onClick = { onPickImage() },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(180.dp),
+                        .height(180.dp)
+                        .testTag("uploadImageCard"),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.outlinedCardColors(containerColor = backgroundGray),
                     border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(lightGray))
@@ -158,7 +159,7 @@ fun AddProductBody(
                     value = name,
                     onValueChange = { name = it },
                     placeholder = { Text("Product Name") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("productNameField"),
                     shape = RoundedCornerShape(16.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = primaryGray,
@@ -172,7 +173,7 @@ fun AddProductBody(
                     value = description,
                     onValueChange = { description = it },
                     placeholder = { Text("Product Description") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("productDescriptionField"),
                     shape = RoundedCornerShape(16.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = primaryGray,
@@ -186,7 +187,7 @@ fun AddProductBody(
                     value = price,
                     onValueChange = { price = it },
                     placeholder = { Text("Price Per Day") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("productPriceField"),
                     shape = RoundedCornerShape(16.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = primaryGray,
@@ -197,7 +198,7 @@ fun AddProductBody(
                 Spacer(modifier = Modifier.height(30.dp))
 
                 if (isUploading) {
-                    CircularProgressIndicator(color = buttonGray)
+                    CircularProgressIndicator(color = buttonGray, modifier = Modifier.testTag("uploadLoader"))
                 } else {
                     Button(
                         onClick = {
@@ -228,7 +229,7 @@ fun AddProductBody(
                                 }
                             }
                         },
-                        modifier = Modifier.fillMaxWidth().height(55.dp),
+                        modifier = Modifier.fillMaxWidth().height(55.dp).testTag("saveProductButton"),
                         shape = RoundedCornerShape(16.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = buttonGray)
                     ) {
