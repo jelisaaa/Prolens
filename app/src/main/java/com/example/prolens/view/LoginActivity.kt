@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -114,7 +115,7 @@ fun LoginBody() {
                         keyboardType = KeyboardType.Email
                     ),
                     placeholder = { Text("Enter Email") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("email"),
                     shape = RoundedCornerShape(16.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = primaryGray,
@@ -146,7 +147,7 @@ fun LoginBody() {
                         }
                     },
                     placeholder = { Text("Enter Password") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("password"),
                     shape = RoundedCornerShape(16.dp),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = primaryGray,
@@ -187,7 +188,8 @@ fun LoginBody() {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(55.dp),
+                        .height(55.dp)
+                        .testTag("loginButton"),
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = buttonGray
@@ -211,7 +213,7 @@ fun LoginBody() {
                             Intent(context, RegistrationActivity::class.java)
                         context.startActivity(intent)
                         activity.finish()
-                    }
+                    }.testTag("registerTag")
                 )
             }
         }

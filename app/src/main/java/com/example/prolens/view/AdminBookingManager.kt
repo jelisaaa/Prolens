@@ -59,13 +59,11 @@ fun AdminBookingManager(viewModel: BookingViewModel) {
 
                             Spacer(modifier = Modifier.height(8.dp))
 
-                            // Only show action buttons if status is Pending
                             if (booking.status == "Pending") {
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
                                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
-                                    // REJECT BUTTON
                                     Button(
                                         onClick = {
                                             viewModel.updateStatus(booking.bookingId, "Rejected") { _, msg ->
@@ -78,7 +76,6 @@ fun AdminBookingManager(viewModel: BookingViewModel) {
                                         Text("Reject", color = Color.White)
                                     }
 
-                                    // APPROVE BUTTON
                                     Button(
                                         onClick = {
                                             viewModel.updateStatus(booking.bookingId, "Approved") { _, msg ->

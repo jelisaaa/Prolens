@@ -44,7 +44,6 @@ fun ForgetPasswordBody() {
 
     var email by remember { mutableStateOf("") }
 
-    // Grayish theme colors
     val backgroundGray = SoftGrey
     val cardGray = SoftWhite
     val primaryGray = Color(0xFF444444)

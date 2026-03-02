@@ -32,7 +32,7 @@ class ProductDetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Retrieve the product passed from the Home Screen
+
         @Suppress("DEPRECATION")
         val product = intent.getSerializableExtra("PRODUCT_DATA") as? ProductModel
 
@@ -54,7 +54,7 @@ class ProductDetailActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailScreen(product: ProductModel, viewModel: BookingViewModel, onBack: () -> Unit) {
-    val context = LocalContext.current // Crucial for showing Toasts
+    val context = LocalContext.current
 
     Scaffold(
         containerColor = Color(0xFF121212),
@@ -74,7 +74,7 @@ fun ProductDetailScreen(product: ProductModel, viewModel: BookingViewModel, onBa
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .verticalScroll(rememberScrollState()) // Allows viewing long descriptions
+                .verticalScroll(rememberScrollState())
         ) {
             // Large Image Header
             AsyncImage(
@@ -114,7 +114,7 @@ fun ProductDetailScreen(product: ProductModel, viewModel: BookingViewModel, onBa
                 )
 
                 Text(
-                    text = product.description, // Correctly maps to ProductModel.description
+                    text = product.description,
                     color = Color.LightGray,
                     fontSize = 16.sp,
                     lineHeight = 24.sp,
@@ -135,10 +135,10 @@ fun ProductDetailScreen(product: ProductModel, viewModel: BookingViewModel, onBa
                                 productName = product.productName,
                                 price = product.pricePerDay,
                                 status = "Pending",
-                                timestamp = System.currentTimeMillis() // Added to match your model
+                                timestamp = System.currentTimeMillis()
                             )
 
-                            // Visual feedback that the click worked
+
                             Toast.makeText(context, "Processing request...", Toast.LENGTH_SHORT).show()
 
                             viewModel.createBooking(booking) { success, message ->

@@ -27,7 +27,6 @@ fun SearchScreen() {
     var searchQuery by remember { mutableStateOf("") }
     val allProducts = remember { mutableStateListOf<ProductModel>() }
 
-    // 1. Fetch products for searching
     LaunchedEffect(Unit) {
         val database = FirebaseDatabase.getInstance().getReference("products")
         database.addValueEventListener(object : ValueEventListener {
@@ -41,7 +40,6 @@ fun SearchScreen() {
         })
     }
 
-    // 2. Filter logic
     val filteredProducts = allProducts.filter {
         it.productName.contains(searchQuery, ignoreCase = true)
     }
@@ -60,8 +58,6 @@ fun SearchScreen() {
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(16.dp))
-
-            // Search Bar
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -81,7 +77,7 @@ fun SearchScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
 
-        // 3. Results Section
+
         if (searchQuery.isEmpty()) {
             item {
                 Text("Suggestions", color = Color.Gray, style = MaterialTheme.typography.labelLarge)

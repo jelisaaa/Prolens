@@ -33,7 +33,7 @@ fun HomeScreen() {
             .background(Color(0xFF121212)), // Set to Dark to match Dashboard
         contentPadding = PaddingValues(16.dp)
     ) {
-        // 1. Welcome Text
+
         item {
             Text(
                 text = "Welcome back, Jelisa 👋",
@@ -44,7 +44,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(16.dp))
         }
 
-        // 2. Search Bar
+
         item {
             OutlinedTextField(
                 value = "",
@@ -62,7 +62,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
 
-        // 3. Featured Section
+
         item {
             Text(
                 text = "Featured Equipment",
@@ -81,7 +81,7 @@ fun HomeScreen() {
             }
         }
 
-        // 4. Categories Section
+
         item {
             Spacer(modifier = Modifier.height(24.dp))
             Text(

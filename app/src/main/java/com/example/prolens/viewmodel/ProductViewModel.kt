@@ -19,12 +19,10 @@ class ProductViewModel(private val repo: ProductRepo) : ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: MutableLiveData<Boolean> get() = _loading
 
-    // --- FIX 1: Implement the uploadImage logic ---
     fun uploadImage(context: Context, imageUri: Uri, callback: (String?) -> Unit) {
         _loading.postValue(true)
         repo.uploadImage(context, imageUri) { imageUrl ->
-            // Don't set loading to false here yet,
-            // wait until the product is also added to Firebase
+
             callback(imageUrl)
         }
     }

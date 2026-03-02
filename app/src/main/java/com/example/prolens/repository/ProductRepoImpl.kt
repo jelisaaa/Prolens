@@ -14,7 +14,6 @@ import java.util.concurrent.Executors
 
 class ProductRepoImpl : ProductRepo {
 
-    // Cloudinary configuration for uploading equipment images [cite: 14, 37]
     private val cloudinary = Cloudinary(
         mapOf(
             "cloud_name" to "dx5d730ps",
@@ -24,7 +23,7 @@ class ProductRepoImpl : ProductRepo {
     )
 
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    // "products" node supports real-time browsing of cameras, lenses, etc. [cite: 33, 34]
+
     private val ref: DatabaseReference = database.getReference("products")
 
     override fun addProduct(model: ProductModel, callback: (Boolean, String) -> Unit) {
@@ -68,7 +67,7 @@ class ProductRepoImpl : ProductRepo {
                     val product = data.getValue(ProductModel::class.java)
                     product?.let { list.add(it) }
                 }
-                callback(true, "Products fetched", list) // Facilitates Easy Equipment Browsing [cite: 33]
+                callback(true, "Products fetched", list)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -91,7 +90,6 @@ class ProductRepoImpl : ProductRepo {
     }
 
     override fun getProductByCategory(categoryId: String, callback: (Boolean, String, List<ProductModel>?) -> Unit) {
-        // Queries products by category to support organized browsing [cite: 33]
         ref.orderByChild("category").equalTo(categoryId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = mutableListOf<ProductModel>()

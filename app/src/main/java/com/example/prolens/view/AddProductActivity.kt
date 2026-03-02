@@ -80,7 +80,6 @@ fun AddProductBody(
     var category by remember { mutableStateOf("") }
     var isUploading by remember { mutableStateOf(false) }
 
-    // Theme Colors
     val backgroundGray = Color(0xFFF2F2F2)
     val cardGray = Color(0xFFFFFFFF)
     val primaryGray = Color(0xFF444444)
@@ -118,7 +117,6 @@ fun AddProductBody(
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // --- UPLOAD AREA ---
                 OutlinedCard(
                     onClick = { onPickImage() },
                     modifier = Modifier

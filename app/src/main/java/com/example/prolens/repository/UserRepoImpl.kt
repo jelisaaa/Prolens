@@ -38,10 +38,8 @@ class UserRepoImpl : UserRepo {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task -> // Use 'task' for clarity
                 if (task.isSuccessful) {
-                    // Success: true, message, and the UID
                     callback(true, "Registration success", auth.currentUser?.uid ?: "")
                 } else {
-                    // FAILURE: This MUST be false
                     val errorMessage = task.exception?.message ?: "An unknown error occurred"
                     callback(false, errorMessage, "")
                 }

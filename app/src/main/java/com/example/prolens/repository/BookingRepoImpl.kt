@@ -6,17 +6,17 @@ import com.google.firebase.database.*
 class BookingRepoImpl : BookingRepo {
 
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    // "Bookings" node stores all rental transactions for ProLens
+
     private val ref: DatabaseReference = database.getReference("Bookings")
 
     override fun placeBooking(model: BookingModel, callback: (Boolean, String) -> Unit) {
         val id = ref.push().key.toString()
-        // Ensure the model has the generated ID
+
         val bookingWithId = model.copy(bookingId = id)
 
         ref.child(id).setValue(bookingWithId).addOnCompleteListener {
             if (it.isSuccessful) {
-                callback(true, "Rental request sent successfully") // Facilitates Easy Rental Process
+                callback(true, "Rental request sent successfully")
             } else {
                 callback(false, "${it.exception?.message}")
             }
@@ -24,7 +24,7 @@ class BookingRepoImpl : BookingRepo {
     }
 
     override fun updateBookingStatus(bookingId: String, status: String, callback: (Boolean, String) -> Unit) {
-        // Updates status (e.g., to 'Approved') to notify the user
+
         ref.child(bookingId).child("status").setValue(status).addOnCompleteListener {
             if (it.isSuccessful) {
                 callback(true, "Booking status updated to $status")
@@ -45,7 +45,6 @@ class BookingRepoImpl : BookingRepo {
     }
 
     override fun getAllBookings(callback: (Boolean, String, List<BookingModel>?) -> Unit) {
-        // Real-time listener for Admin to monitor all gear requests
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = mutableListOf<BookingModel>()
@@ -63,7 +62,6 @@ class BookingRepoImpl : BookingRepo {
     }
 
     override fun getBookingsByUserId(userId: String, callback: (Boolean, String, List<BookingModel>?) -> Unit) {
-        // Filters bookings so users can see their own rental history
         ref.orderByChild("userId").equalTo(userId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = mutableListOf<BookingModel>()

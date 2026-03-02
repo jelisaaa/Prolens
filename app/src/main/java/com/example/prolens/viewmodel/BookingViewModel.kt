@@ -10,16 +10,15 @@ class BookingViewModel(
     private val repo: BookingRepo = BookingRepoImpl()
 ) : ViewModel() {
 
-    // 1. Existing list for Admin
+
     private val _bookings = mutableStateListOf<BookingModel>()
     val bookings: List<BookingModel> = _bookings
 
-    // 2. NEW: Specific list for the logged-in User
     private val _userBookings = mutableStateListOf<BookingModel>()
     val userBookings: List<BookingModel> = _userBookings
 
     init {
-        fetchBookings() // Fetches all for admin by default
+        fetchBookings()
     }
 
     private fun fetchBookings() {
@@ -31,7 +30,6 @@ class BookingViewModel(
         }
     }
 
-    // 3. NEW: Function to fetch only current user's data
     fun fetchUserBookings(userId: String) {
         repo.getBookingsByUserId(userId) { success, message, data ->
             if (success && data != null) {

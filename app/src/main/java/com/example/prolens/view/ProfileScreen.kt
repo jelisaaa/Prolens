@@ -105,7 +105,7 @@ fun ProfileScreen(viewModel: BookingViewModel) {
                 }
             }
         } else {
-            // FIX: Pass the viewModel to the UserBookingCard here
+
             items(userBookings) { booking ->
                 UserBookingCard(booking, viewModel)
             }
@@ -172,7 +172,7 @@ fun UserBookingCard(booking: BookingModel, viewModel: BookingViewModel) {
                 Text(text = detailText, color = Color.Gray, fontSize = 12.sp)
             }
 
-            // --- ADDED DELETE BUTTON ---
+
             if (booking.status == "Pending") {
                 IconButton(onClick = {
                     viewModel.deleteBooking(booking.bookingId) { success, message ->
@@ -182,12 +182,12 @@ fun UserBookingCard(booking: BookingModel, viewModel: BookingViewModel) {
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Cancel Request",
-                        tint = Color(0xFFFF5252) // Light red tint
+                        tint = Color(0xFFFF5252)
                     )
                 }
             }
 
-            // Status Badge
+
             Surface(
                 color = when (booking.status) {
                     "Approved" -> Color(0xFF1B5E20)

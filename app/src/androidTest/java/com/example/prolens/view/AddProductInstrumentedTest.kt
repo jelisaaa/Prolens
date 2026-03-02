@@ -36,38 +36,26 @@ class AddProductInstrumentedTest {
 
     @Test
     fun testAddProductFlow() {
-        // 1. Setup a fake image result for the picker
-        // We use a mock Uri and wrap it in a result intent
         val resultUri = Uri.parse("android.resource://com.example.prolens/drawable/camera_sample")
         val resultIntent = Intent()
         resultIntent.data = resultUri
         val result = Instrumentation.ActivityResult(Activity.RESULT_OK, resultIntent)
 
-        // 2. Tell Espresso Intents to automatically "return" this image 
-        // when the system image picker (ACTION_GET_CONTENT or PICK_IMAGES) is opened.
-        // This bypasses the need to access the private 'selectedImageUri' variable.
         intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(result)
         intending(hasAction("android.provider.action.PICK_IMAGES")).respondWith(result)
 
-        // 3. Fill Name
         composeRule.onNodeWithTag("productNameField")
             .performTextInput("Test Camera")
 
-        // 4. Fill Description
         composeRule.onNodeWithTag("productDescriptionField")
             .performTextInput("Test Description")
 
-        // 5. Fill Price
         composeRule.onNodeWithTag("productPriceField")
             .performTextInput("100")
 
-        // 6. Click the Upload Image Area
-        // This triggers the picker, which immediately "returns" our fake URI
         composeRule.onNodeWithTag("uploadImageCard")
             .performClick()
 
-        // 7. Click Save Button
-        // Now the internal 'selectedImageUri' is not null, so it passes the validation
         composeRule.onNodeWithTag("saveProductButton")
             .performClick()
     }
